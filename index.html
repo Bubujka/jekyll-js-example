@@ -1,0 +1,67 @@
+---
+
+---
+<html>
+    <script
+      src="https://code.jquery.com/jquery-3.3.0.min.js"
+      integrity="sha256-RTQy8VOmNlT6b2PIRur37p6JEBZUE7o8wPgMvu18MC4="
+      crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+    <style>
+      .doggo{
+        border: 1px solid grey;
+      }
+      .catto{
+        border: 1px solid red;
+      }
+    </style>
+<body>
+
+  <h2>Исходные данные</h2>
+  <h3>Dogs</h3>
+  <pre>{{ site.data.dogs | inspect }}</pre>
+
+  <h3>Cats</h3>
+  <pre>{{ site.data.cats | inspect }}</pre>
+  <hr>
+
+  <h2>Работа с данными в jquery</h2>
+  <div id="jquery-demo"></div>
+
+  <script>
+    $(function(){
+      var dogs = {{site.data.dogs | jsonify}};
+
+      for(var i in dogs){
+        $('#jquery-demo').append('<div class="doggo">'+dogs[i].Кличка+'</div>')
+      }
+    })
+  </script>
+
+  <hr>
+
+  <h2>Работа с данными в angular</h2>
+  <div ng-app="CatsApp" ng-controller='MainController'>
+
+    Search: <input type="text" ng-model='s'>
+
+    <div class="catto" ng-repeat='cat in cats | filter: s'>
+      <h3>[[cat.name]]</h3>
+      [[cat.sex]]
+    </div>
+  </div>
+
+  <script>
+    var app = angular.module('CatsApp', []);
+    app.config(function($interpolateProvider) {
+      $interpolateProvider.startSymbol('[[');
+      $interpolateProvider.endSymbol(']]');
+    });
+    app.controller('MainController', function($scope){
+      $scope.cats = {{site.data.cats | jsonify}};
+    });
+  </script>
+</body>
+</html>

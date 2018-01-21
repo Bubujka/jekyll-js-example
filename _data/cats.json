@@ -1,0 +1,11 @@
+[
+  { "name": "cat 1", "sex": "male" },
+  { "name": "cat 2", "sex": "female" },
+  { "name": "cat 3", "sex": "male" },
+  { "name": "cat 4", "sex": "female" },
+  { "name": "cat 5", "sex": "male" },
+  { "name": "cat 6", "sex": "female" },
+  { "name": "cat 7", "sex": "male" },
+  { "name": "cat 8", "sex": "female" },
+  { "name": "cat 9", "sex": "male" }
+]
